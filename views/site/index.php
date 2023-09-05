@@ -1,53 +1,44 @@
 <?php
 
 /** @var yii\web\View $this */
+use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+$this->title = 'Welcome to PartyMaker';
 ?>
 <div class="site-index">
+<?= Html::img('@web/img/pic2.png', ['alt' => 'pic not found', 'style' => "width:1200px;height:450px"]); ?>
 
     <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Congratulations!</h1>
+        <h1 class="display-4">You are welcome to our gamer community.</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">You are welcome to our gamer community.</p>
 
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+        <p><a class="btn btn-lg btn-info" href="http://localhost/index.php?r=site%2Flogin">Let's play!</a></p>
     </div>
 </div>
+<!-- Genre - Game
+User - Achievmentpoints
+Game - Events -->
+
+<table class="table table-striped table-bordered border-primary caption-top">
+    <caption>List of users</caption>
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Amount of games</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($genres as $genre): ?>
+                <tr>
+                    <th scope="row"><?= Html::encode("{$genre->id}") ?></th>
+                    <td><?= Html::encode("{$genre->name}") ?></td>
+                    <td><?= Html::encode("=)") ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+</table>
+
+
+    <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Check out for more ... &raquo;</a></p>

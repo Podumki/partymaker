@@ -9,6 +9,21 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Achievments;
+use app\models\AchievmentType;
+use app\models\Events;
+use app\models\GameAchievment;
+use app\models\GameMode;
+use app\models\Games;
+use app\models\GamesGenre;
+use app\models\Genres;
+use app\models\Messages;
+use app\models\Modes;
+use app\models\User;
+use app\models\UserEvent;
+use app\models\UserGame;
+use app\models\UserAchievment;
+
 
 class SiteController extends Controller
 {
@@ -59,9 +74,36 @@ class SiteController extends Controller
      *
      * @return string
      */
+
+
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $queryGame = Games::find();
+        $queryGenre = Genres::find();
+        $games = $queryGame->orderBy('id')
+            ->limit(5)
+            ->all();
+        $genres = $queryGenre->orderBy('id')
+            ->limit(5)
+            ->all();
+            
+        
+        $queryUser = User::find();
+        $queryUserAchievment = UserAchievment::find();
+        $user = $queryUser->orderBy('id')
+            ->limit(5)
+            ->all();
+        $userAchievment = $queryUserAchievment->orderBy('id')
+            ->limit(5)
+            ->all();
+
+        return $this->render('index', [
+            'games' => $games,
+            'genres' => $genres,
+            'user' => $user,
+            'userAchievment' => $userAchievment,
+        ]);
     }
 
     /**
@@ -123,6 +165,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+
         return $this->render('about');
     }
 
