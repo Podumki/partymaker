@@ -22,7 +22,7 @@ use app\models\Modes;
 use app\models\User;
 use app\models\UserEvent;
 use app\models\UserGame;
-use app\models\UserAchievment;
+use app\models\Userachievment;
 
 
 class SiteController extends Controller
@@ -78,32 +78,21 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-
         $queryGame = Games::find();
-        $queryGenre = Genres::find();
+        $genres = Genres::getGenresByGames();
         $games = $queryGame->orderBy('id')
             ->limit(5)
             ->all();
-        $genres = $queryGenre->orderBy('id')
-            ->limit(5)
-            ->all();
-            
-        
-        $queryUser = User::find();
-        $queryUserAchievment = UserAchievment::find();
-        $user = $queryUser->orderBy('id')
-            ->limit(5)
-            ->all();
-        $userAchievment = $queryUserAchievment->orderBy('id')
-            ->limit(5)
-            ->all();
 
-        return $this->render('index', [
+        $usersWithAchievments = User::getUserByAchievmentpoints();
+        $gamesWithEvents = Games::getGameByEvents();
+        $array = [
             'games' => $games,
             'genres' => $genres,
-            'user' => $user,
-            'userAchievment' => $userAchievment,
-        ]);
+            'usersWithAchievments' => $usersWithAchievments,
+            'gamesWithEvents' => $gamesWithEvents
+        ];
+        return $this->render('index', $array);
     }
 
     /**
@@ -116,6 +105,9 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
+        // => присваевание 
+        // -> обращение к методу или свойству экземпляра класса
+        // :: обращение к методу или свойству калсса
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -169,8 +161,19 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionSay($message = 'Привет')
+    public function actionProfile($id)
     {
-        return $this->render('say', ['message' => $message]);
+        $user = User::findOne($id);
+        $games = Games::getGamesByUser($id);
+
+        return $this->render('profile', ['user'=>$user, 'games'=>$games] );
+    
     }
+
+    public function actionImpressum()
+    {
+
+        return $this->render('impressum');
+    }
+
 }

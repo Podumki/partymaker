@@ -7,76 +7,72 @@ use yii\helpers\Html;
 $this->title = 'Welcome to PartyMaker';
 ?>
 <div class="site-index">
-  <?= Html::img('@web/img/pic2.png', ['alt' => 'pic not found', 'style' => "width:1200px;height:450px"]); ?>
+  <?= Html::img('@web/img/gaming-together-playing-with-friends-free-vector.jpg', ['alt' => 'pic not found', 'style' => 'float: right;max-width:600px;width:100%']); ?>
 
   <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-    <h1 class="display-4">You are welcome to our gamer community.</h1>
+    <h1 class="display-4">LFG - Find Gamer Friends</h1>
 
-    <p class="lead">You are welcome to our gamer community.</p>
-
-    <p><a class="btn btn-lg btn-info" href="http://localhost/index.php?r=site%2Flogin">Let's play!</a></p>
+    <p class="lead">You are welcome to our gamer community!</p>
   </div>
 </div>
 <!-- Genre - Amount of Games
 User - Achievmentpoints
 Game - Events -->
+<div class="d-flex p-2 bd-highlight">
+  <table class="table table-striped table-bordered border-success caption-top w-auto table-info">
+    <caption>List of Users</caption>
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Genre</th>
+        <th scope="col">Amount of Games</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($genres as $genre) : ?>
+        <tr>
+          <td><?= Html::encode("{$genre['name']}") ?></td>
+          <td><?= Html::encode("{$genre['count']}") ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+  <table class="table table-striped table-bordered border-warning caption-top w-auto table-warning">
+    <caption>Users with most Achievments</caption>
+    <thead class="table-light">
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Achievmentpoints</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($usersWithAchievments as $usersWithAchievment) : ?>
+        <tr>
+          <td><?= Html::encode("{$usersWithAchievment['name']}") ?></td>
+          <td><?= Html::encode("{$usersWithAchievment['points']}") ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 
-<table class="table table-striped table-bordered border-primary caption-top">
-  <caption>List of users</caption>
-  <thead class="table-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Amount of games</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($genres as $genre) : ?>
+  <table class="table table-striped table-bordered border-danger caption-top w-auto table-danger">
+    <caption>Popularity of Games</caption>
+    <thead class="table-light">
       <tr>
-        <th scope="row"><?= Html::encode("{$genre->id}") ?></th>
-        <td><?= Html::encode("{$genre->name}") ?></td>
-        <td><?= Html::encode("=)") ?></td>
+        <th scope="col">Game</th>
+        <th scope="col">Events</th>
       </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-<table class="table table-striped table-bordered border-primary caption-top">
-  <caption>List of users</caption>
-  <thead class="table-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Achievmentpoints</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($genres as $genre) : ?>
-      <tr>
-        <th scope="row"><?= Html::encode("{$genre->id}") ?></th>
-        <td><?= Html::encode("{$genre->name}") ?></td>
-        <td><?= Html::encode("=)") ?></td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-<table class="table table-striped table-bordered border-primary caption-top">
-  <caption>List of users</caption>
-  <thead class="table-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Amount of games</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($genres as $genre) : ?>
-      <tr>
-        <th scope="row"><?= Html::encode("{$genre->id}") ?></th>
-        <td><?= Html::encode("{$genre->name}") ?></td>
-        <td><?= Html::encode("=)") ?></td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-<p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Check out for more ... &raquo;</a></p>
+    </thead>
+    <tbody>
+      <?php foreach ($gamesWithEvents as $gamesWithEvent) : ?>
+        <tr>
+          <td><?= Html::encode("{$gamesWithEvent['name']}") ?></td>
+          <td><?= Html::encode("{$gamesWithEvent['events']}") ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="text-center">
+  <p><a class="btn btn-lg btn-danger position-absolute mx-auto" href="http://localhost/index.php?r=site%2Flogin">Let's play!</a></p>
+</div>

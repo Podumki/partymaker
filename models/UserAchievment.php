@@ -4,6 +4,6 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class UserAchievment extends ActiveRecord
+class Userachievment extends ActiveRecord
 {
 }
