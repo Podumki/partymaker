@@ -74,5 +74,19 @@ Game - Events -->
 </div>
 </div>
 <div class="text-center">
-  <p><a class="btn btn-lg btn-danger position-absolute mx-auto" href="http://localhost/index.php?r=site%2Flogin">Let's play!</a></p>
+  <p>
+  <?php 
+
+    $str = (!!Yii::$app->user->identity) ? 'href="http://localhost/index.php?r=site%2Fprofile&id='.Yii::$app->user->identity->id : 'href="http://localhost/index.php?r=site%2Flogin';
+    echo '<a class="btn btn-lg btn-danger position-absolute mx-auto" '.$str.'">Let´s play!</a>';
+  ?>
+  </p>
 </div>
+
+<!-- Yii::$app->user->identity -->
+<!-- (Yii::$app->user->identity ) ? 'href="http://localhost/index.php?r=site%2Fprofile&id='.Yii::$app->user->identity->id : 'href="http://localhost/index.php?r=site%2Flogin'; -->
+<!-- // if (Yii::$app->user->identity){
+    //   echo '<a class="btn btn-lg btn-danger position-absolute mx-auto" href="http://localhost/index.php?r=site%2Fprofile&id='.Yii::$app->user->identity->id .'">Let´s play!</a>';
+    // } else {
+    //   echo '<a class="btn btn-lg btn-danger position-absolute mx-auto" href="http://localhost/index.php?r=site%2Flogin">Let´s play!</a>';
+    // } -->

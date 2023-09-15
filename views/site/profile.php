@@ -80,7 +80,7 @@ $this->title = 'Welcome';
             </div>
         </div>
     </div>
-    </div>
+    
     <?php echo FullCalendarWidget::widget([
     'calendarRenderBefore' => "console.log('before', calendar)",
     'calendarRenderAfter' => "console.log('after', calendar)",
@@ -103,4 +103,6 @@ $this->title = 'Welcome';
         ]),
     ],
     ]);?>
+</div>
+
 </section>

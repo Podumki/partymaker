@@ -42,6 +42,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Profile', 'url' => ['/site/profile', 'id' => Yii::$app->user->identity ? Yii::$app->user->identity->id : 0], 'visible' => !! Yii::$app->user->identity],
+            // объявляется массив в котором к ключу label присваевается значение profile, таким образом создается первый элемент массива, у которого ключ лэбл и значение профайл
+            // элемент массива состоит из ключа и значения
+            // 
             ['label' => 'Impressum', 'url' => ['/site/impressum']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]

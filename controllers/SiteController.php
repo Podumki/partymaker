@@ -23,6 +23,9 @@ use app\models\User;
 use app\models\UserEvent;
 use app\models\UserGame;
 use app\models\Userachievment;
+use kriss\calendarSchedule\events\BackgroundEvent;
+use kriss\calendarSchedule\events\TitleEvent;
+use kriss\calendarSchedule\events\UrlEvent;
 
 
 class SiteController extends Controller
@@ -165,15 +168,28 @@ class SiteController extends Controller
     {
         $user = User::findOne($id);
         $games = Games::getGamesByUser($id);
-
+        
         return $this->render('profile', ['user'=>$user, 'games'=>$games] );
-    
     }
 
     public function actionImpressum()
     {
 
         return $this->render('impressum');
+    }
+
+    public function actionEvents($start, $end)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $month = date('Y-m', strtotime($start));
+
+        return [
+            new TitleEvent('100', $month . '-15', $month . '-16'),
+            new TitleEvent('200', $month . '-17', $month . '-19'),
+            new UrlEvent('url', ['site/events'], $month . '-15', $month . '-16'),
+            new BackgroundEvent($month . '-17', $month . '-29', 'red'),
+        ];
     }
 
 }
